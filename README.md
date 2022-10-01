@@ -1,8 +1,8 @@
 <p align="center">
-  <h1 align="center">Clinic Management API</h1>
+  <h1 align="center">Motostock API</h1>
 
   <p align="center">
-    REST API of Clinic Application
+    REST API of Vehicle Warehouse System
   </p>
 </p>
 
