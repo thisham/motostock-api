@@ -1,0 +1,25 @@
+{
+    "openapi": "3.0.0",
+    "x-stoplight": {
+      "id": "jkg69ba2v3u5r"
+    },
+    "info": {
+      "title": "Motostock API",
+      "version": "1.0",
+      "description": "This is an API for managing the stock of vehicle store.",
+      "contact": {
+        "name": "Hamdan Yuwafi",
+        "email": "yuwafi.hamdan365@gmail.com"
+      }
+    },
+    "servers": [
+      {
+        "url": "http://localhost:8000",
+        "description": "Development Server"
+      }
+    ],
+    "paths": {},
+    "components": {
+      "schemas": {}
+    }
+  }
