@@ -18,8 +18,352 @@
         "description": "Development Server"
       }
     ],
-    "paths": {},
+    "paths": {
+      "/api/transaction/in/motor": {
+        "post": {
+          "summary": "Input Motor Transaction",
+          "operationId": "post-api-transaction-in-motor",
+          "tags": [
+            "Transaction"
+          ],
+          "description": "Input new motor to be stocked in the warehouse.",
+          "requestBody": {
+            "$ref": "#/components/requestBodies/NewMotor"
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/ResponseMeta"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "examples": {}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      },
+      "/api/transaction/in/car": {
+        "post": {
+          "summary": "Input Car Transaction",
+          "operationId": "post-api-transaction-in-car",
+          "tags": [
+            "Transaction"
+          ],
+          "description": "Input new motor to be stocked in the warehouse.",
+          "requestBody": {
+            "$ref": "#/components/requestBodies/NewCar"
+          },
+          "responses": {
+            "201": {
+              "description": "Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/ResponseMeta"
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "examples": {}
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": []
+      }
+    },
     "components": {
-      "schemas": {}
-    }
+      "schemas": {
+        "Car": {
+          "title": "Car",
+          "x-stoplight": {
+            "id": "5hn27fweo7cik"
+          },
+          "description": "This is a final model of vehicle. Extended to Car object.",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Vehicle"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "machine": {
+                  "type": "string",
+                  "example": "MH45723810"
+                },
+                "passenger_capacity": {
+                  "type": "number",
+                  "example": 6
+                },
+                "type": {
+                  "type": "string",
+                  "example": "matic"
+                }
+              }
+            }
+          ]
+        },
+        "Motor": {
+          "title": "Motor",
+          "x-stoplight": {
+            "id": "5hn27fweo7cik"
+          },
+          "description": "This is a final model of vehicle. Extended to Motor object.",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/Vehicle"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "machine": {
+                  "type": "string",
+                  "example": "MH7923782"
+                },
+                "suspension_type": {
+                  "type": "string",
+                  "example": "Mono Shock Dual Swing Arm"
+                },
+                "transmission_type": {
+                  "type": "string",
+                  "example": "manual"
+                }
+              }
+            }
+          ]
+        },
+        "ResponseMeta": {
+          "title": "ResponseMeta",
+          "x-stoplight": {
+            "id": "rwdv3tbbpocqe"
+          },
+          "type": "object",
+          "properties": {
+            "meta": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "x-examples": {
+            "200": {
+              "meta": {
+                "code": 200,
+                "status": "OK"
+              }
+            },
+            "201": {
+              "meta": {
+                "code": 201,
+                "status": "Created"
+              }
+            },
+            "400": {
+              "meta": {
+                "code": 400,
+                "status": "Bad Request"
+              }
+            },
+            "401": {
+              "meta": {
+                "code": 401,
+                "status": "Unauthorized"
+              }
+            },
+            "403": {
+              "meta": {
+                "code": 403,
+                "status": "Forbidden"
+              }
+            },
+            "404": {
+              "meta": {
+                "code": 404,
+                "status": "Not Found"
+              }
+            },
+            "500": {
+              "meta": {
+                "code": 500,
+                "status": "Internal Server Error"
+              }
+            }
+          }
+        },
+        "Vehicle": {
+          "title": "Vehicle",
+          "x-stoplight": {
+            "id": "lh3zl4roo2wbd"
+          },
+          "type": "object",
+          "description": "This is a core model of vehicle. This object will be extended into child classes.",
+          "properties": {
+            "production_year": {
+              "type": "number",
+              "example": 2011
+            },
+            "color": {
+              "type": "string",
+              "example": "black"
+            },
+            "price": {
+              "type": "number",
+              "example": 24000000
+            }
+          }
+        }
+      },
+      "requestBodies": {
+        "NewMotor": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Motor"
+              }
+            }
+          },
+          "description": "This request is a template for new motor."
+        },
+        "NewCar": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Car"
+              }
+            }
+          },
+          "description": "This request is a template for new car."
+        }
+      },
+      "responses": {
+        "Response_404": {
+          "description": "Example response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Response_400": {
+          "description": "Example response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ResponseMeta"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "errors": {
+                        "type": "object",
+                        "properties": {
+                          "field": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "examples": {}
+            }
+          }
+        },
+        "Response_500": {
+          "description": "Example response",
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "Transaction"
+      }
+    ]
   }
