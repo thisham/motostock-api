@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as EloquentModel;
 
-class Vehicle extends Model
+class Vehicle extends EloquentModel
 {
     use HasFactory;
 
@@ -19,4 +19,6 @@ class Vehicle extends Model
         'passenger_capacity',
         'type'
     ];
+
+    protected $collection = 'vehicles';
 }
