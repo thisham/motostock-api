@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TestMongoController;
+use App\Http\Controllers\Vehicle\MotorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/test', [TestMongoController::class, 'index']);
+Route::post('/vehicle/motor', [MotorController::class, 'insert']);
+Route::get('/vehicle/motor', [MotorController::class, 'index']);
+Route::get('/vehicle/motor/{vehicleID}', [MotorController::class, 'show']);
