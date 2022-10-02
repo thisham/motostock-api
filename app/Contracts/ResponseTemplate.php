@@ -11,9 +11,8 @@ class ResponseTemplate
 
     public function __construct()
     {
-        $this->meta->code = 200;
-        $this->meta->message = 'OK';
-        $this->data = null;
+        $this->meta = (object) [];
+        $this->data = [];
     }
 
     public function setMeta(int $httpCode)
