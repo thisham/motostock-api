@@ -9,7 +9,7 @@ use Ramsey\Uuid\Uuid;
 
 class CarMapper
 {
-    public static function toEntity(Collection $carQuery): Car
+    public static function toEntity(object $carQuery): Car
     {
         $car = new Car();
 
@@ -27,7 +27,7 @@ class CarMapper
     {
         $cars = [];
         foreach ($carQuery as $car) {
-            array_push($cars, self::toEntity($car));
+            array_push($cars, self::toEntity((object) $car));
         }
         return $cars;
     }
